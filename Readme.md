@@ -25,5 +25,9 @@ Deployment:
    ```
 4. Test the result with the sample in sample/sample_web_client.html
    Results should be shown in console of server.py
+   Change path if need:
+   ```
+   ws = new WebSocket('ws://localhost:10928/transcribe/stream');
+   ```
 
-5. Modify config.py if you want to finetune the results
+6. Modify config.py if you want to finetune the results
