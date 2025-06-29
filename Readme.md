@@ -1,14 +1,14 @@
-##Remarks:
+**Remarks:**
 1. Should be run on linux server. (vllm installation issue)
 2. 2 ports are required. The model is served on 8128, fastapi listen to 10928. You can change them in runModel.sh and config.py
 
-##Dependencies:
+**Dependencies:**
 1. Ten-VAD: Detect speech activities:
    https://github.com/TEN-framework/ten-vad
 2. vLLM: Deploy whisper models
    https://github.com/vllm-project/vllm
 
-##Deployment:
+**Deployment:**
 
 1. Install Dependencies:
    ```
