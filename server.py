@@ -34,7 +34,7 @@ async def transcribe_stream(ws: WebSocket):
     try:
         while True:
             data = await ws.receive_bytes()
-            await ws.send_json({"transcribing": True})
+            # await ws.send_json({"transcribing": True})
             data_save_fp32 = np.frombuffer(data, dtype=np.float32)
             data_save_int16 = (data_save_fp32 * 32767).astype(np.int16)
             avg_score, total_score, probs = getVADScore(data_save_int16)
