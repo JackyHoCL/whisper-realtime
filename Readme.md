@@ -1,6 +1,6 @@
 Remarks:
 1. Should be run on linux server. (vllm installation issue)
-2. 2 ports are required. The model is served on 8128, fastapi listen to 10928. You can change them in runModel.sh and config.p
+2. 2 ports are required. The model is served on 8128, fastapi listen to 10928. You can change them in runModel.sh and config.py
 
 Deployment:
 
@@ -19,3 +19,5 @@ Deployment:
    ```
 4. Test the result with the sample in sample/sample_web_client.html
    Results should be shown in console of server.py
+
+5. Modify config.py if you want to finetune the results
