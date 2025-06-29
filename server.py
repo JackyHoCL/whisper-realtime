@@ -30,7 +30,7 @@ async def transcribe_stream(ws: WebSocket):
     audio_data_save = bytearray()
     silent_cnt = 0
     recording = False
-
+    
     try:
         while True:
             data = await ws.receive_bytes()
@@ -42,7 +42,7 @@ async def transcribe_stream(ws: WebSocket):
             if (avg_score > VAD_AVG_SCORE_THRESHOLD):
                 audio_data_save.extend(data)
                 if len(audio_data_save) > VAD_SEND_THRESHOLD:
-                    send_to_whisper(audio_data_save)
+                    await ws.send_json({"transcript": send_to_whisper(audio_data_save)}) 
                     audio_data_save.clear()
                 silent_cnt = 0
                 recording = True
@@ -51,7 +51,7 @@ async def transcribe_stream(ws: WebSocket):
                     audio_data_save.extend(data)
                 silent_cnt += 1
                 if silent_cnt > VAD_SILENT_THRESHOLD and len(audio_data_save) > VAD_MIN_THRESHOLD:
-                    send_to_whisper(audio_data_save)
+                    await ws.send_json({"transcript": send_to_whisper(audio_data_save)}) 
                     audio_data_save.clear()
                     recording = False
 
@@ -66,7 +66,7 @@ def send_to_whisper(audio_data_save):
     wavfile.write(byte_buffer, rate=AUDIO_SAMPLE_RATE, data=data_save_int16)
     byte_buffer.seek(0)
     buffered_reader = io.BufferedReader(byte_buffer)
-    sync_openai(buffered_reader)
+    return sync_openai(buffered_reader)
 
 if __name__ == "__main__":
     import uvicorn
