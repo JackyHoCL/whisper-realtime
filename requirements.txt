@@ -1,0 +1,7 @@
+vllm
+fastapi[standard]
+pydantic
+numpy
+git+https://github.com/TEN-framework/ten-vad.git
+openai
+scipy
