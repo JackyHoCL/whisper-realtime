@@ -21,7 +21,7 @@ kill_process_by_port() {
 PORT=8128 # Replace with your desired port number
 kill_process_by_port $PORT
 
-/home/jacky/anaconda3/envs/vllm/bin/vllm serve JackyHoCL/whisper-large-v3-turbo-cantonese-yue-english \
+/home/jacky/anaconda3/envs/vllm/bin/vllm serve JackyHoCL/whisper-large-v3-turbo-cantonese-noise-detection \
   --gpu-memory-utilization 0.7 \
   --served-model-name whisper-3 \
   --port 8128 \
