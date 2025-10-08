@@ -27,17 +27,18 @@ def sync_openai(f):
             repetition_penalty=1.3,
         ),
     )
-    if check_hallucination(transcription.text):
-        return ""
-    else:
-        print(transcription.text)
-        if HALLUCINATION_COLLECTOR:
-            if (transcription.text not in hallucinations):
-                hallucinations.append(transcription.text)
-                with open("util/hallucinations.json", "w") as json_file:
-                    json.dump(hallucinations, json_file, indent=4)
-            #end of collect hallucinations
-        return transcription.text  
+    cleaned_transcript = remove_hallucinations(transcription.text)
+
+    print(cleaned_transcript)
+
+    if HALLUCINATION_COLLECTOR:
+        if (transcription.text not in hallucinations):
+            hallucinations.append(transcription.text)
+            with open("util/hallucinations.json", "w") as json_file:
+                json.dump(hallucinations, json_file, indent=4)
+        #end of collect hallucinations
+
+    return cleaned_transcript  
      
 if __name__ == "__main__":
   sync_openai()

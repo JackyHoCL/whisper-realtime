@@ -8,3 +8,9 @@ with open("util/hallucinations.json", "r") as json_file:
 
 def check_hallucination(input):
   return (input.lstrip().startswith("*")) or (input in hallucinations)
+
+def remove_hallucinations(input_sentence: str) -> str:
+    result = input_sentence
+    for word in hallucinations:
+        result = result.replace(word, "")
+    return result

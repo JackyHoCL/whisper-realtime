@@ -5,7 +5,7 @@ VLLM_PATH = '/v1'
 VLLM_KEY = ''             #Your vllm key
 VLLM_PROTOCOL = 'http'
 VLLM_MODEL_NAME = 'whisper-3'  #Should be the same name as the served-model-name or model name in runModel.sh
-VLLM_DEFAULT_LANG = 'zh'
+VLLM_DEFAULT_LANG = ''
 
 #VAD
 VAD_THRESHOLD = 0.5               #The threshold is used to determine whether it is a speech activity in a single hop
