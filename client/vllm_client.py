@@ -20,11 +20,13 @@ def sync_openai(f):
         model=VLLM_MODEL_NAME,
         response_format="json",
         language=VLLM_DEFAULT_LANG,
-        temperature=0.0,
+        temperature=0.3,
         # Additional sampling params not provided by OpenAI API.
         extra_body=dict(
             seed=4419,
             repetition_penalty=1.3,
+            frequency_penalty=1.0,
+            top_p=0.5
         ),
     )
     cleaned_transcript = remove_hallucinations(transcription.text)
